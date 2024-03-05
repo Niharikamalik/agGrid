@@ -3,3 +3,16 @@
 @import 'ag-grid-community/styles/ag-grid.css';
 /* Quartz Theme Specific CSS */
 @import 'ag-grid-community/styles/ag-theme-quartz.css';
+
+
+.suppress-movable-col {
+  background-color: #cc333344;
+}
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.ag-body-viewport [col-id='currency'] {
+  background-color: #2244cc44;
+}
