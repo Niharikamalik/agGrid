@@ -1,9 +1,21 @@
+<div>
+    <button  (click)="onEmailFirst()" mat-raised-button color="primary">Email First</button>
+    <button (click)="onEmailLast()"  mat-raised-button color="primary">Email Last</button>
+    <button (click)="onusernameFirst()"  mat-raised-button color="primary">Country First</button>
+    <!-- <button (click)="onSwapFirstTwo()">Swap First Two</button>
+      <button (click)="onPrintColumns()">Print Columns</button> -->
+</div>
+
 <ag-grid-angular
-  class="ag-theme-quartz"
-  style="height: 500px;"
-  [defaultColDef]="defaultColDef"
-  [rowData]="userList"
-  [columnDefs]="colDefs">
+[groupHeaderHeight]="groupHeaderHeight"
+[columnDefs]="colDefs"
+[rowData]="userList"
+[defaultColDef]="defaultColDef"
+[suppressDragLeaveHidesColumns]="true"
+(gridReady)="onGridReady($event)"
+class="ag-theme-quartz "
+style="height: 100vh ;"
+>
 </ag-grid-angular>
 
 <!-- [getRowId]="getRowId" -->

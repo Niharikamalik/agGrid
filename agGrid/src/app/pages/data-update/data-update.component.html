@@ -1,0 +1,20 @@
+<h3>data-update works!</h3>
+<div class="example-wrapper">
+    <div style="margin-bottom: 5px;">
+      <label>Transaction Updates: </label>
+      <button (click)="updateFirstRow()" mat-raised-button color="primary">Update First Displayed Row</button>
+      <button (click)="addDRow()"mat-raised-button  color="primary">Add New 'D' Row</button>
+      <button (click)="reset()" style="margin-left: 20px" mat-raised-button color="warn">Reset</button>
+    </div>
+
+    <ag-grid-angular
+      style=" height: 100vh;"
+      [defaultColDef]="defaultColDef"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [sideBar]="sideBar"
+      [class]="themeClass"
+      (firstDataRendered)="onFirstDataRendered($event)"
+      (gridReady)="onGridReady($event)"
+    ></ag-grid-angular>
+  </div>

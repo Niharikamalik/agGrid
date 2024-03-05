@@ -1,9 +1,13 @@
 
-<!-- <ag-grid-angular
-class="ag-theme-quartz"
-style="height: 500px;"
-[rowData]="rowData"
-[columnDefs]="colDefs">
-
-</ag-grid-angular> -->
+<ag-grid-angular
+    class="ag-theme-quartz"
+    style="height: 500px;"
+    [defaultColDef]="defaultColDef"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    (gridReady)="onGridReady($event)"
+></ag-grid-angular>
 <app-ag-grid></app-ag-grid>
+<app-row></app-row>
+<app-filter></app-filter>
+<app-data-update></app-data-update>

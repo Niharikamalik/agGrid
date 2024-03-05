@@ -1,25 +1,62 @@
 import { Component } from '@angular/core';
-// import {AgGridAngular} from 'ag-grid-angular'
-import {ColDef} from 'ag-grid-community'
+import { GridApi,ColumnApi } from 'ag-grid-community';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
+  private gridApi: GridApi;
+  private gridColumnApi: ColumnApi;
+
+  columnDefs = [
+    {
+      headerName: 'Car Information',
+      children: [
+        { headerName: 'Make', field: 'make' },
+        { headerName: 'Model', field: 'model' },
+      ],
+    },
+    {
+      headerName: 'Price Information',
+      children: [
+        {
+          headerName: 'Currency',
+          field: 'currency',
+          // col Span
+          colSpan: (params: any) => {
+            console.log(params.data.currency);
+            const currency = params.data.currency;
+            if (currency === 'USD') {
+              // have all USD column width 4
+              return 2;
+            } else {
+              // all other rows should be just normal
+              return 1;
+            }
+          },
+        },
+        { headerName: 'Price', field: 'price' },
+      ],
+    },
+  ];
+  defaultColDef = {
+    flex: 1,
+    minWidth: 100,
+  };
 
   rowData = [
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
+    { make: 'Toyota', model: 'Celica', price: 35000, currency: 'USD' },
+    { make: 'Ford', model: 'Mondeo', price: 32000, currency: 'USD' },
+    { make: 'Porsche', model: 'Boxster', price: 72000, currency: 'EUR' },
   ];
 
-  // Column Definitions: Defines the columns to be displayed.
-  colDefs: ColDef[] = [
-    { field: "make",filter:true , flex:2 },
-    { field: "model" ,filter:true , flex:2 },
-    { field: "price", filter:true , flex:2 },
-    { field: "electric",filter:true , flex:2 }
-  ];
+  onGridReady(params: { api: GridApi<any>; columnApi: ColumnApi }) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
 }
